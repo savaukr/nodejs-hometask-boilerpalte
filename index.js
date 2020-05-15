@@ -13,8 +13,8 @@ const routes = require('./routes/index');
 routes(app);
 
 app.use('/', express.static('./client/build'));
-
-const port = 3050;
+//const port = 3050;
+const port = 3000;
 app.listen(port, () => {});
 
 exports.app = app;
