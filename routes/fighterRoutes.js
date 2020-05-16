@@ -11,7 +11,6 @@ const router = Router();
 router.get('/', function(req, res, next) {
     const fighters = FighterService.getAllFighters();
 	if (fighters) {
-        console.log(fighters);
         res.send(fighters);
     } else {
         const error = {
@@ -24,7 +23,6 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
     const fighter = FighterService.getOneFighter(req.params.id);;
 	if (fighter) {
-        console.log(fighter);
         res.send(fighter);
     } else {
         const error = {
@@ -37,11 +35,8 @@ router.get('/:id', function(req, res, next) {
 })
 
 router.post('/', createFighterValid, function(req, res) {
-    let data = { ...req.body};
-    data = addDefense(req.body, 6);
-    const fighter = FighterService.create(data); 
+    const fighter = FighterService.create(req.body);
     if (fighter) {
-        console.log(fighter);
         res.send("Fighter create successful");
     } else {
         const error = {
@@ -56,7 +51,6 @@ router.put('/:id', updateFighterValid, function(req, res ) {
     const dataToUpdate = req.body;
     const fighter = FighterService.update(req.params.id, dataToUpdate);
     if (fighter) {
-        console.log('fighter:', fighter);
         res.send("Fighter update successful");
     } else {
         const error = {
@@ -70,7 +64,6 @@ router.put('/:id', updateFighterValid, function(req, res ) {
 router.delete('/:id', function(req,res){
     const fighter = FighterService.delete(req.params.id);
     if (fighter) {
-        console.log('fighter:', fighter);
         res.send("Fighter delete successful");
     } else {
         const error = {

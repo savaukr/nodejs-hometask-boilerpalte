@@ -13,7 +13,7 @@ const router = Router();
 router.get('/', function(req, res, next) {
     const users = UserService.getAllUsers();
 	if (users) {
-        console.log(users);
+        //console.log(users);
         res.send(users);
     } else {
         const error = {
@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
     const user = UserService.getOneUser(req.params.id);;
 	if (user) {
-        console.log(user);
+        //console.log(user);
         res.send(user);
     } else {
         const error = {
@@ -41,7 +41,7 @@ router.get('/:id', function(req, res, next) {
 router.post('/', createUserValid, function(req, res) {
     const user = UserService.create(req.body);
     if (user) {
-        console.log('router.post:',user);
+        //console.log('router.post:',user);
         res.send("User create successful");
     } else {
         const error = {
@@ -56,7 +56,7 @@ router.put('/:id', updateUserValid, function(req, res ) {
     const dataToUpdate = req.body;
     const user = UserService.update(req.params.id, dataToUpdate);
     if (user) {
-        console.log('user:', user);
+        //console.log('user:', user);
         res.send("User update successful");
     } else {
         const error = {
@@ -70,7 +70,7 @@ router.put('/:id', updateUserValid, function(req, res ) {
 router.delete('/:id', function(req,res){
     const user = UserService.delete(req.params.id);
     if (user) {
-        console.log('user:', user);
+        //console.log('user:', user);
         res.send("User delete successful");
     } else {
         const error = {

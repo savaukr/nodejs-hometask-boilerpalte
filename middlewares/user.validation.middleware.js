@@ -1,5 +1,6 @@
 const { user } = require('../models/user');
 
+//можливо  user предати в параметри 
 const createUserValid = (req, res, next) => {
     // TODO: Implement validatior for user entity during creation
     //ok   
@@ -13,7 +14,7 @@ const createUserValid = (req, res, next) => {
     }
 
 }
-
+//можливо  user предати в параметри 
 const updateUserValid = (req, res, next) => {
     // TODO: Implement validatior for user entity during update
     //ok
@@ -23,7 +24,6 @@ const updateUserValid = (req, res, next) => {
     } else {
         res.status(401).send(JSON.stringify(error));
     }
-   //next();
 }
 
 
@@ -42,7 +42,7 @@ const validUser = (reqBody, modelUser) => {
                     }
                     break;
                 case 'firstName':
-                    if (reqBody.firstName.length < 1) {
+                    if (reqBody[prop].length < 1) {
                         error.error = true;
                         error.message += ` ${prop}  is not valid`;
                     }
@@ -54,7 +54,7 @@ const validUser = (reqBody, modelUser) => {
                     }
                     break;
                 case 'password': 
-                    if (reqBody.password.length < 3) {
+                    if (reqBody[prop].length < 3) {
                         error.error = true;
                         error.message += ` ${prop}  is not valid`;
                     }
@@ -64,7 +64,7 @@ const validUser = (reqBody, modelUser) => {
             }
         } else {
             error.error = true;
-            error.message = 'field dose not in model!'
+            error.message = 'field dose not in model of User!'
             return error;
         }
     }
